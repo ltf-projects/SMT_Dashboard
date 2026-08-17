@@ -215,8 +215,8 @@ veya ismi değiştirmek için yalnızca bu dosya düzenlenir.
 | Alan | Gösterim |
 | --- | --- |
 | `Speed_of_vehicle` | Araç Hızı (gösterge, 0–120 km/sa) |
-| `Main_drive_motor_speed` | Ana Tahrik Motor Devri (gösterge, ±3000 d/dk) |
-| `Auxiliary_drive_motor_speed` | Yardımcı Tahrik Motor Devri (gösterge, ±3000 d/dk) |
+| `Main_drive_motor_speed` | Ana Motor Devri (gösterge, ±3000 d/dk) |
+| `Auxiliary_drive_motor_speed` | Yardımcı Motor Devri (gösterge, ±3000 d/dk) |
 | `Throttle_depth` | Gaz Pedalı (gösterge, %) |
 | `Braking_depth` | Fren Pedalı (gösterge, %) |
 | `Trip_Number_KM` | Yol Sayacı (kart) |

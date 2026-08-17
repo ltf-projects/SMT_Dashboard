@@ -82,7 +82,7 @@ const SURUS_GAUGES = [
   { key: 'Speed_of_vehicle', tr: 'Araç Hızı', unit: 'km/sa', min: 0, max: 120, zones: zones(80, 100, 120) },
   {
     key: 'Main_drive_motor_speed',
-    tr: 'Ana Tahrik Motor Devri',
+    tr: 'Ana Motor Devri',
     unit: 'd/dk',
     min: -3000,
     max: 3000,
@@ -91,7 +91,7 @@ const SURUS_GAUGES = [
   },
   {
     key: 'Auxiliary_drive_motor_speed',
-    tr: 'Yardımcı Tahrik Motor Devri',
+    tr: 'Yardımcı Motor Devri',
     unit: 'd/dk',
     min: -3000,
     max: 3000,
