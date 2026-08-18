@@ -40,6 +40,12 @@ const ICONS = {
       <path d="M8 7.5v11M13 7.5v11M3.5 12.5h17" />
     </>
   ),
+  fuel: (
+    <>
+      <path d="M6 3.5h9v17H6z" />
+      <path d="M8.5 6.5h4M15 8h2l2 2.5v7a1.5 1.5 0 0 0 3 0V9.5l-2-2" />
+    </>
+  ),
 };
 
 function formatNum(v, decimals) {

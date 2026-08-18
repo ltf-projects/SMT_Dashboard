@@ -1,7 +1,7 @@
 {
   "name": "mta-dashboard",
   "version": "1.0.0",
-  "description": "SMT Dashboard - MQTT üzerinden 113 numaralı elektrikli aracın canlı izleme arayüzü (React + Node köprü)",
+  "description": "SMT Dashboard - MQTT üzerinden 36 numaralı dizel makinenin canlı izleme arayüzü (React + Node köprü)",
   "type": "module",
   "engines": {
     "node": ">=20"

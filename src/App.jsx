@@ -59,7 +59,7 @@ export default function App() {
   const locationStale = locationLastAt === null || now - locationLastAt > STALE_MS;
   const deviceActive = conn.connected && !stale;
 
-  const vehicleId = conn.vehicleId ?? 113;
+  const vehicleId = conn.vehicleId ?? 36;
   const topic = conn.topic || `resJ1939/${vehicleId}`;
   const locationTopic = conn.locationTopic || `resLocation/${vehicleId}`;
 

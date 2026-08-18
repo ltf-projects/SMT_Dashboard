@@ -8,13 +8,11 @@ import { CATEGORIES, FIELDS } from '../config/fields.js';
 // serilerin çizileceği seçilir. Çip açıp kapatmak yeniden istek atmaz —
 // aralıktaki bütün alanlar zaten indirilmiştir.
 //
-// Geçmiş köprünün belleğinde tutulur (bkz. server.js). Köprü yeniden başlarsa
-// veya tampon dolarsa eski örnekler kaybolur.
+// Geçmiş PostgreSQL'de kalıcı olarak tutulur ve köprünün /history ucundan okunur.
 
 const MAX_RANGE_MS = 7 * 24 * 60 * 60 * 1000;
 
-// Geçmiş bellekte tutulduğu için pratikte birkaç günden eskisi zaten yok;
-// yine de kullanıcı 1970 ya da 2099 gibi anlamsız tarihler seçemesin diye
+// Kullanıcı 1970 ya da 2099 gibi anlamsız tarihler seçemesin diye
 // seçilebilir pencere 30 günle sınırlanır. Üst sınır her zaman "şimdi"dir:
 // gelecekte ölçüm olamaz.
 const MAX_PAST_DAYS = 30;
@@ -51,7 +49,7 @@ function validateRange(fromStr, toStr, nowMs) {
 // Geçmiş yalnızca bu kategoriler için çizilir; her biri kendi grafiğini alır.
 // Dijital alanlar açık/kapalı durum taşıdığı için zaman serisinde anlamlı
 // değil, o yüzden "Durum Verileri" dışarıda bırakıldı.
-const CHART_CATEGORIES = ['surus', 'enerji'];
+const CHART_CATEGORIES = ['motor', 'yakit'];
 
 // Grafiğe çizilebilecek alanlar: yukarıdaki kategorilerin sayısal alanları.
 // Köprüden yalnızca bunlar istenir.

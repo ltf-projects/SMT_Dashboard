@@ -7,8 +7,8 @@
 //
 // Broker'da her araç kendi topic dalına yayın yapar; ayrım topic yolundaki
 // araç numarasıyla olur (payload'ın içinde araç kimliği yoktur):
-//   resJ1939/113    → araç, tahrik ve batarya verileri
-//   resLocation/113 → GNSS konumu (enlem/boylam/rakım/hız/yön)
+//   resJ1939/36    → dizel motor ve yakıt verileri
+//   resLocation/36 → GNSS konumu (enlem/boylam/rakım/hız/yön)
 // ---------------------------------------------------------------------------
 import 'dotenv/config';
 import express from 'express';
@@ -54,7 +54,7 @@ const {
 } = process.env;
 
 const listenPort = Number(PORT || BRIDGE_PORT);
-const vehicleId = Number(VEHICLE_ID || BOX_ID || 113);
+const vehicleId = Number(VEHICLE_ID || BOX_ID || 36);
 const dataTopic = `${MQTT_DATA_PREFIX}/${vehicleId}`;
 const locationTopic = `${MQTT_LOCATION_PREFIX}/${vehicleId}`;
 const allowedOrigins =
@@ -87,7 +87,7 @@ const lastState = {
 };
 
 // --- Geçmiş örnekleri (PostgreSQL) -----------------------------------------
-// Her HISTORY_SAMPLE_MS'de bir satır `arac_ornekleri` tablosuna yazılır.
+// Her HISTORY_SAMPLE_MS'de bir satır `makine_ornekleri` tablosuna yazılır.
 // Yazma tamamen köprüye aittir: tarayıcı açık olmasa da, bu süreç ayakta
 // olduğu sürece kayıt sürer.
 //
@@ -95,7 +95,8 @@ const lastState = {
 // (MQTT -> Socket.IO) veritabanından bağımsız çalışmaya devam eder.
 const historySampleMs = Math.max(Number(HISTORY_SAMPLE_MS) || 5000, 250);
 
-const TABLE = 'arac_ornekleri';
+const TABLE = 'makine_ornekleri';
+const LEGACY_TABLE = 'arac_ornekleri';
 const FIELD_KEYS = [...new Set(HISTORY_FIELDS.filter((f) => f.key).map((f) => f.key))];
 // Alan adları büyük/küçük harf karışık (Speed_of_vehicle); Postgres tırnaksız
 // tanımlayıcıları küçük harfe indirdiği için her yerde tırnaklanır.
@@ -133,6 +134,8 @@ async function initDb() {
     return;
   }
   try {
+    // 113 numaralı elektrikli araçtan kalan uyumsuz şema artık kullanılmaz.
+    await pool.query(`DROP TABLE IF EXISTS ${LEGACY_TABLE}`);
     await pool.query(`
       CREATE TABLE IF NOT EXISTS ${TABLE} (
         zaman TIMESTAMPTZ NOT NULL,
